@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
-import { Image, View, Text } from 'react-native';
-import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
+import { Image, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
+import { MaterialIcons } from '@expo/vector-icons'
 
 import styles from './styles';
 
@@ -38,6 +39,7 @@ export default function Main({ navigation }){
     }
 
     return (   
+       <>
         <MapView initialRegion={currentRegion} style={styles.map}>
             <Marker coordinate={{ latitude: -5.870280, longitude: -35.187834}} >
                 <Image style={styles.avatar} source={{ uri: 'https://avatars0.githubusercontent.com/u/6172978?s=460&u=429ed7767e15d8e5202b1ea7f92b585cd5e2294f&v=4'}} />
@@ -52,5 +54,20 @@ export default function Main({ navigation }){
                 </Callout>
             </Marker>
         </MapView>
+        <View style={styles.searchForm} >
+            <TextInput 
+                style={styles.searchInput}
+                placeholder="Buscar devs por techs..."
+                placeholderTextColor="#999"
+                autoCapitalize="words"
+                autoCorrect={false}
+            />
+            
+            <TouchableOpacity onPress={() => {}} style={ styles.loadBotton }>
+                 <MaterialIcons name="my-location" size={20} color="#fff" />
+            </TouchableOpacity>
+
+        </View>
+       </>
     )
 }
